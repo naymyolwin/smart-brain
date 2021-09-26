@@ -6,21 +6,27 @@ import ImageLinkForm from "./component/ImageLinkForm/ImageLinkForm";
 import Rank from "./component/Rank/Rank";
 
 import Particles from "react-particles-js";
+import FaceRecognition from "./component/FaceRecognition/FaceRecognition";
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       input: "",
+      imageUrl: "",
     };
   }
 
   onInputChange = (event) => {
-    console.log(event.target.value);
+    this.setState({
+      input: event.target.value,
+    });
   };
 
   onButtonSubmit = () => {
-    console.log("submit");
+    this.setState({
+      imageUrl: this.state.input,
+    });
   };
 
   render() {
@@ -33,6 +39,7 @@ class App extends React.Component {
           onInputChange={this.onInputChange}
           onButtonSubmit={this.onButtonSubmit}
         />
+        <FaceRecognition imageUrl={this.state.imageUrl} />
         <Particles
           className="particles"
           params={{
@@ -54,8 +61,6 @@ class App extends React.Component {
             },
           }}
         />
-
-        {/* <FaceRecoginition /> */}
       </div>
     );
   }
